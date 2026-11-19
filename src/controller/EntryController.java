@@ -9,16 +9,20 @@ import domain.Vehicle;
 import domain.Vehicle.VehicleType;
 import service.SlotService;
 import service.TicketService;
+import service.VehicleService;
 
 public class EntryController {
 
-	private SlotService slotService;
+	private final SlotService slotService;
 
-	private TicketService ticketService;
+	private final TicketService ticketService;
 
-	public EntryController(SlotService slotService, TicketService ticketService) {
+	private final VehicleService vehicleService;
+
+	public EntryController(SlotService slotService, TicketService ticketService, VehicleService vehicleService) {
 		this.slotService = slotService;
 		this.ticketService = ticketService;
+		this.vehicleService = vehicleService;
 	}
 
 	public EntryResult enterVehicle(String licensePlate, VehicleType vehicleType) {
@@ -32,7 +36,7 @@ public class EntryController {
 		}
 
 		String plate = licensePlate.strip();
-		Vehicle vehicle = new Vehicle(plate, vehicleType);
+		Vehicle vehicle = vehicleService.saveVehicle( new Vehicle(plate, vehicleType));
 		System.out.println("Vehicle created: " + vehicle.getId());
 
 		Optional<ParkingSlot> allocatedSlot = slotService.allocateSlot(vehicle);

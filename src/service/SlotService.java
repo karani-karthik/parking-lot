@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import domain.ParkingSlot;
 import domain.Vehicle;
@@ -24,6 +25,12 @@ public class SlotService {
 		}
 
 		return slot;
+	}
+
+	public void releaseSlot(UUID slotId) {
+		System.out.println("Releasing slot: " + slotId);
+		slotRepository.releaseSlot(slotId);
+		System.out.println("Slot released successfully: " + slotId);
 	}
 
 }

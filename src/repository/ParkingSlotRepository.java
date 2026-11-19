@@ -32,4 +32,12 @@ public class ParkingSlotRepository {
 		return parkignSlots.values().stream()
 				.collect(Collectors.groupingBy(ParkingSlot::getSlotType, Collectors.counting()));
 	}
+
+	public void releaseSlot(UUID slotId) {
+		ParkingSlot slot = parkignSlots.get(slotId);
+		if (slot != null) {
+			slot.setOccupied(false);
+			parkignSlots.put(slotId, slot);
+		}
+	}
 }

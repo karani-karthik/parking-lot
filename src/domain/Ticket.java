@@ -22,6 +22,10 @@ public class Ticket {
         this.entryTime = LocalDateTime.now();
         this.isActive = true;
     }
+    
+	public void deactivate() {
+		this.isActive = false;
+	}
 
 	public UUID getId() {
 		return id;
@@ -68,4 +72,5 @@ public class Ticket {
 		return "Ticket [id=" + id + ", vehicleId=" + vehicleId + ", slotId=" + slotId + ", entryTime=" + entryTime
 				+ ", isActive=" + isActive + "]";
 	}
+
 }

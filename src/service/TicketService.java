@@ -21,4 +21,13 @@ public class TicketService {
 		System.out.println("Ticket generated successfully: " + ticket.getId());
 		return ticket;
 	}
+
+	public Ticket getTicketById(UUID ticketId) {
+		return ticketRepository.findById(ticketId);
+	}
+	
+	public void deactivateTicket(UUID ticketId) {
+		System.out.println("Deactivating ticket: " + ticketId);
+        ticketRepository.deactivateTicket(ticketId);
+    }
 }
